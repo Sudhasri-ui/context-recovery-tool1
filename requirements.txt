@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+PyGithub
+python-dotenv
+pydantic
+scikit-learn
+numpy
+google-genai
+requests

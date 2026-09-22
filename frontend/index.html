@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Context Recovery — Recover the Context Your Codebase Forgot</title>
+  <meta name="description" content="AI for codebase understanding. Reconstruct scattered GitHub history into evidence-backed context cards.">
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="header">
+    <a href="#" class="brand">
+      <div class="brand-icon">CR</div>
+      <span class="brand-title">Context Recovery</span>
+      <span class="brand-tag">v0.1.0</span>
+    </a>
+    
+    <nav class="nav-links">
+      <a href="#how-it-works" class="nav-link">How it Works</a>
+      <a href="#workspace-app" class="nav-link">Live Workspace</a>
+      <a href="#features" class="nav-link">Features</a>
+      <a href="#security" class="nav-link">Security</a>
+    </nav>
+
+    <div class="header-right">
+      <div class="status-pill" id="systemStatusPill">
+        <span class="status-dot" id="systemStatusDot"></span>
+        <span id="systemStatusText">API Connected</span>
+      </div>
+      <a href="#workspace-app" class="btn-primary-sm">Try Context Recovery</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-grid">
+      <!-- Hero Left Column -->
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          AI FOR CODEBASE UNDERSTANDING
+        </div>
+        <h1 class="hero-title">Recover the context your codebase forgot.</h1>
+        <p class="hero-subtitle">
+          Codebase decisions get fragmented across issues, PR discussions, review comments, and commit diffs. 
+          Context Recovery connects these scattered fragments and reconstructs the full narrative.
+        </p>
+        <div class="hero-actions">
+          <a href="#workspace-app" class="btn-primary-hero">
+            <span>Try Context Recovery</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+          <a href="#how-it-works" class="btn-secondary-hero">See how it works</a>
+        </div>
+      </div>
+
+      <!-- Hero Right Column: Wide Desktop Product Preview -->
+      <div class="hero-preview-container">
+        <div class="desktop-mockup">
+          <div class="mockup-header">
+            <div class="mockup-dots">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            </div>
+            <div class="mockup-address">github.com/acme/payment-service — Context Reconstruction</div>
+          </div>
+          
+          <div class="reconstruction-preview-wide">
+            <!-- Fragmented Column -->
+            <div class="preview-col">
+              <span class="preview-col-label">Scattered Evidence</span>
+              <div class="preview-fragment-stack">
+                <div class="fragment-chip"><span class="chip-type issue">Issue</span><span>#247 Token Expiry Crash</span></div>
+                <div class="fragment-chip"><span class="chip-type pr">PR</span><span>#231 Reduce JWT lifetime</span></div>
+                <div class="fragment-chip"><span class="chip-type commit">Commit</span><span>a83f21 Update config</span></div>
+                <div class="fragment-chip"><span class="chip-type file">File</span><span>src/auth/token_manager.py</span></div>
+              </div>
+            </div>
+
+            <!-- Flow Arrow / Node -->
+            <div class="preview-flow-node">
+              <div class="flow-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </div>
+              <span class="flow-label">RECOVERING CONTEXT</span>
+            </div>
+
+            <!-- Context Recovered Card -->
+            <div class="preview-card-output">
+              <div class="output-badge">CONTEXT RECOVERED</div>
+              <div class="output-item">
+                <span class="item-title">Problem</span>
+                <p>Users logged out after 10m mismatch.</p>
+              </div>
+              <div class="output-item">
+                <span class="item-title">Start Here</span>
+                <code>token_manager.py → refresh_token()</code>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem Statement Section -->
+  <section class="section-container" id="problem">
+    <div class="section-header">
+      <span class="section-eyebrow">THE FRAGMENTATION PROBLEM</span>
+      <h2 class="section-title">Why developer context vanishes over time</h2>
+      <p class="section-subtitle">
+        When an engineer leaves, or code changes hands, the rationale behind critical implementations is scattered across disparate tools.
+      </p>
+    </div>
+
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-icon">💬</div>
+        <h3>Buried PR Discussions</h3>
+        <p>Key trade-offs and architecture decisions discussed in pull request comments are forgotten once merged.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">📌</div>
+        <h3>Disconnected Issues</h3>
+        <p>Bug reports describe symptoms but don't link back to the exact commit that introduced the breaking behavior.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">🔍</div>
+        <h3>Cryptic Commit Messages</h3>
+        <p>Short commit messages like "fix auth" lack the wider business context needed to safely modify code today.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="section-container" id="how-it-works">
+    <div class="section-header">
+      <span class="section-eyebrow">HOW IT WORKS</span>
+      <h2 class="section-title">Reconstruction in three simple steps</h2>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step-card">
+        <span class="step-number">01</span>
+        <h3>Connect Repository</h3>
+        <p>Context Recovery ingests default branch history, issues, PRs, review comments, and changed file diffs.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-number">02</span>
+        <h3>Semantic Dense Retrieval</h3>
+        <p>Vector embeddings rank the most relevant commits, discussions, and code lines matching your task.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-number">03</span>
+        <h3>Evidence-Backed Synthesis</h3>
+        <p>AI synthesizes an investigation report with direct citations, zero hallucinations, and a clear starting point.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Interactive Product Demo Workspace -->
+  <section class="workspace-wrapper" id="workspace-app">
+    <div class="workspace-header-bar">
+      <div class="workspace-title-group">
+        <h2>Live Developer Workspace</h2>
+        <span class="workspace-subtitle">Select or enter a task to test context recovery live</span>
+      </div>
+      <button class="btn-secondary" id="demoToggleBtn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+        Load Demo Scenario
+      </button>
+    </div>
+
+    <main class="workspace-layout">
+      <!-- Sidebar: Control Inputs -->
+      <aside class="workspace-sidebar">
+        <div class="sidebar-group">
+          <label class="sidebar-label">Target Repository</label>
+          <div class="input-row">
+            <input type="text" id="repoOwnerInput" class="input-field" placeholder="Owner" value="demo">
+            <input type="text" id="repoNameInput" class="input-field" placeholder="Repo" value="project">
+          </div>
+          <button class="btn-secondary" id="connectRepoBtn" style="width: 100%; justify-content: center; margin-top: 6px;">
+            Fetch Repository Issues
+          </button>
+        </div>
+
+        <div class="sidebar-group">
+          <label class="sidebar-label">Quick Select Issue</label>
+          <div class="quick-issues" id="quickIssuesContainer">
+            <div class="issue-chip" data-task="Fix authentication timeout problem where users log out after 10 minutes">
+              <span>Auth timeout bug</span>
+              <span class="issue-num">#247</span>
+            </div>
+            <div class="issue-chip" data-task="Investigate memory growth during background context embedding matrix calculation">
+              <span>Memory leak in worker</span>
+              <span class="issue-num">#184</span>
+            </div>
+            <div class="issue-chip" data-task="GitHub API rate limit handling during deep commit history traversal">
+              <span>Rate limit retries</span>
+              <span class="issue-num">#92</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-group">
+          <label class="sidebar-label">Developer Task / Issue</label>
+          <textarea id="taskInput" class="input-field" placeholder="Describe the problem or task...">Fix the authentication timeout problem where users log out after 10 minutes</textarea>
+        </div>
+
+        <button class="btn-primary" id="recoverContextBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"></path>
+            <polyline points="21 3 21 8 16 8"></polyline>
+          </svg>
+          Recover Context
+        </button>
+      </aside>
+
+      <!-- Center: Main Investigation Workspace -->
+      <section class="main-workspace">
+
+        <!-- Simplified Recovery Experience Loader -->
+        <div class="stage-loader hidden" id="stageLoader">
+          <div class="stage-header-clean">
+            <div class="stage-spinner"></div>
+            <span class="stage-main-title">Recovering context...</span>
+          </div>
+
+          <!-- Clean User-Facing Progress Steps -->
+          <div class="stage-list" id="stageList">
+            <div class="stage-item" id="stage-1"><span class="stage-check">○</span><span>Connected to repository</span></div>
+            <div class="stage-item" id="stage-2"><span class="stage-check">○</span><span>Found relevant history</span></div>
+            <div class="stage-item" id="stage-3"><span class="stage-check">○</span><span>Traced related changes</span></div>
+            <div class="stage-item" id="stage-4"><span class="stage-check">○</span><span>Connected evidence</span></div>
+            <div class="stage-item" id="stage-5"><span class="stage-check">○</span><span>Synthesizing context...</span></div>
+          </div>
+
+          <!-- Optional Technical Pipeline Accordion Toggle -->
+          <div class="tech-details-toggle" id="techDetailsToggle">
+            <span>View technical pipeline details</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+          <div class="tech-details-content hidden" id="techDetailsContent">
+            <div>• Vector Model: SentenceTransformers (all-MiniLM-L6-v2)</div>
+            <div>• Matrix Operation: L2 Normalized Cosine Dot-Product (384-d)</div>
+            <div>• Reasoning Model: Google Gemini 2.5 Flash</div>
+          </div>
+        </div>
+
+        <!-- Signature AI Investigation Report (Context Card) -->
+        <article class="investigation-report" id="investigationReport">
+          <div class="report-header">
+            <div class="report-title-group">
+              <span class="report-badge">CONTEXT RECOVERED</span>
+              <span id="reportTaskTitle" class="report-task-subtitle">Fix authentication timeout</span>
+            </div>
+            <div class="confidence-pill high" id="confidencePill">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span id="confidenceText">Confidence: HIGH</span>
+            </div>
+          </div>
+
+          <div class="report-body">
+
+            <!-- 🚀 START HERE Hero Box -->
+            <div class="start-here-hero">
+              <div class="start-here-top">
+                <span class="start-here-label">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  START HERE → RECOMMENDED ENTRY POINT
+                </span>
+                <button class="btn-secondary-sm" id="copyPathBtn">Copy Path</button>
+              </div>
+              <div class="start-here-code" id="startHerePath">
+                src/auth/token_manager.py → refresh_token()
+              </div>
+              <p class="start-here-desc" id="startHereReason">
+                Inspect line 42 in <code>token_manager.py</code> where JWT expiration duration is validated against token issue timestamp.
+              </p>
+            </div>
+
+            <!-- 🔴 PROBLEM -->
+            <div class="report-section">
+              <h3 class="section-title-label"><span class="dot-red">🔴</span> PROBLEM</h3>
+              <div class="section-body-text" id="reportProblem">
+                Users are prematurely logged out after 10 minutes of activity due to a mismatch in JWT token expiration evaluation.
+                <a href="#evidence-issue-247" class="citation-tag" data-citation="issue-247">[Issue #247]</a>
+              </div>
+            </div>
+
+            <!-- 💡 WHY -->
+            <div class="report-section">
+              <h3 class="section-title-label"><span class="dot-amber">💡</span> WHY / ROOT CAUSE</h3>
+              <div class="section-body-text" id="reportWhy">
+                Commit <a href="#evidence-commit-a83f21" class="citation-tag" data-citation="commit-a83f21">[commit a83f21]</a> reduced the JWT expiration token threshold from 30 minutes to 10 minutes without updating the corresponding refresh token grace period logic in the API middleware.
+              </div>
+            </div>
+
+            <!-- 🕐 HISTORY -->
+            <div class="report-section">
+              <h3 class="section-title-label"><span class="dot-blue">🕐</span> HISTORY & CONTEXT</h3>
+              <div class="section-body-text" id="reportHistory">
+                The project originally used a 30-minute JWT duration. During a security audit <a href="#evidence-pr-231" class="citation-tag" data-citation="pr-231">[PR #231]</a>, the expiration lifetime was shortened for security compliance, introducing downstream session revocation bugs.
+              </div>
+            </div>
+
+            <!-- 🔄 PREVIOUS ATTEMPTS -->
+            <div class="report-section">
+              <h3 class="section-title-label"><span class="dot-violet">🔄</span> PREVIOUS ATTEMPTS</h3>
+              <div class="section-body-text" id="reportAttempts">
+                <ul class="attempts-ul" id="attemptsList">
+                  <li>Attempted adjusting client-side local storage auto-refresh timers in PR #235 (didn't fix backend rejection).</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- 👥 PEOPLE INVOLVED -->
+            <div class="report-section">
+              <h3 class="section-title-label"><span class="dot-emerald">👥</span> PEOPLE INVOLVED</h3>
+              <div class="people-tags" id="reportPeople">
+                <span class="person-tag">developer1 (Author)</span>
+                <span class="person-tag">developer2 (Committer)</span>
+              </div>
+            </div>
+
+          </div>
+        </article>
+
+        <!-- Historical Sequence Timeline -->
+        <div class="timeline-container" id="timelineSection">
+          <div class="timeline-header-title">HISTORICAL EVENT SEQUENCE</div>
+          <div class="timeline-flow-clean" id="timelineFlow">
+            <div class="timeline-step active">
+              <div class="timeline-dot"></div>
+              <span class="timeline-step-name">Issue #247 Filed</span>
+              <span class="timeline-step-date">Sep 10</span>
+            </div>
+            <div class="timeline-line"></div>
+            <div class="timeline-step">
+              <div class="timeline-dot"></div>
+              <span class="timeline-step-name">PR #231 Opened</span>
+              <span class="timeline-step-date">Sep 11</span>
+            </div>
+            <div class="timeline-line"></div>
+            <div class="timeline-step">
+              <div class="timeline-dot"></div>
+              <span class="timeline-step-name">Commit a83f21</span>
+              <span class="timeline-step-date">Sep 11</span>
+            </div>
+            <div class="timeline-line"></div>
+            <div class="timeline-step">
+              <div class="timeline-dot"></div>
+              <span class="timeline-step-name">Fix Attempted</span>
+              <span class="timeline-step-date">Sep 12</span>
+            </div>
+            <div class="timeline-line"></div>
+            <div class="timeline-step active">
+              <div class="timeline-dot"></div>
+              <span class="timeline-step-name">Current Task</span>
+              <span class="timeline-step-date">Today</span>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Right: Evidence Panel Inspector -->
+      <aside class="evidence-panel">
+        <div class="evidence-header">
+          <span class="evidence-header-title">SUPPORTING EVIDENCE</span>
+          <span id="evidenceCount" class="evidence-count-badge">3 Sources</span>
+        </div>
+
+        <div class="evidence-cards-list" id="evidenceList">
+
+          <div class="evidence-card" id="evidence-issue-247" data-id="issue-247">
+            <div class="evidence-top-row">
+              <span class="evidence-type-badge issue">Issue</span>
+              <span class="evidence-id-tag">#247</span>
+            </div>
+            <div class="evidence-card-title">Authentication timeout</div>
+            <div class="evidence-card-excerpt">Users are getting logged out after 10 minutes when navigating between routes.</div>
+            <div class="evidence-card-meta">By developer1 • Sep 10, 2026</div>
+            <div class="evidence-why-matters">
+              <strong>Why it matters:</strong> Original bug report documenting user session termination.
+            </div>
+          </div>
+
+          <div class="evidence-card" id="evidence-commit-a83f21" data-id="commit-a83f21">
+            <div class="evidence-top-row">
+              <span class="evidence-type-badge commit">Commit</span>
+              <span class="evidence-id-tag">a83f21</span>
+            </div>
+            <div class="evidence-card-title">Update JWT expiry configuration</div>
+            <div class="evidence-card-excerpt">Changed JWT expiration duration setting from 30 minutes to 10 minutes in token_manager.py.</div>
+            <div class="evidence-card-meta">By developer2 • Sep 11, 2026</div>
+            <div class="evidence-why-matters">
+              <strong>Why it matters:</strong> Root cause commit that shortened token expiration thresholds.
+            </div>
+          </div>
+
+          <div class="evidence-card" id="evidence-pr-231" data-id="pr-231">
+            <div class="evidence-top-row">
+              <span class="evidence-type-badge pr">Pull Request</span>
+              <span class="evidence-id-tag">#231</span>
+            </div>
+            <div class="evidence-card-title">Security audit token lifetime update</div>
+            <div class="evidence-card-excerpt">PR to reduce token lifetimes across services to meet security compliance targets.</div>
+            <div class="evidence-card-meta">By security-team • Sep 11, 2026</div>
+            <div class="evidence-why-matters">
+              <strong>Why it matters:</strong> Context explaining the business motivation for changing token limits.
+            </div>
+          </div>
+
+        </div>
+      </aside>
+    </main>
+  </section>
+
+  <!-- Features Showcase Grid -->
+  <section class="section-container" id="features">
+    <div class="section-header">
+      <span class="section-eyebrow">BUILT FOR DEVELOPERS</span>
+      <h2 class="section-title">Designed for real-world engineering teams</h2>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-box">
+        <div class="feature-icon">🎯</div>
+        <h3>Actionable "Start Here" Direction</h3>
+        <p>Never wonder which file to edit first. Context Recovery points directly to the file and function requiring attention.</p>
+      </div>
+      <div class="feature-box">
+        <div class="feature-icon">🔗</div>
+        <h3>Traceable Evidence Citations</h3>
+        <p>Every claim in the investigation report links back to exact GitHub issues, PRs, and commit SHAs.</p>
+      </div>
+      <div class="feature-box">
+        <div class="feature-icon">⚡</div>
+        <h3>Sub-second Vector Search</h3>
+        <p>Local dense embeddings (`all-MiniLM-L6-v2`) index codebase history without external vector databases.</p>
+      </div>
+      <div class="feature-box">
+        <div class="feature-icon">🛡️</div>
+        <h3>Zero Hallucinations</h3>
+        <p>Strict LLM reasoning rules ensure answers are synthesized strictly from retrieved GitHub records.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Trust & Security Section -->
+  <section class="section-container" id="security">
+    <div class="security-card">
+      <div class="security-content">
+        <h2>Developer Trust & Data Privacy</h2>
+        <p>Your repository code and API tokens never leave your configured environment. Context Recovery reads directly via GitHub's REST API and processes tokens securely in-memory.</p>
+        <div class="security-badges">
+          <span class="sec-badge">✓ Statutory Token Isolation</span>
+          <span class="sec-badge">✓ In-Memory Vector Processing</span>
+          <span class="sec-badge">✓ Strict Evidence Contextualization</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="brand">
+        <div class="brand-icon">CR</div>
+        <span class="brand-title">Context Recovery</span>
+      </div>
+      <p class="footer-text">Reconstructing forgotten codebase context from scattered GitHub history.</p>
+      <div class="footer-copy">© 2026 Context Recovery. Built for high-velocity software teams.</div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Application Controller JavaScript -->
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
